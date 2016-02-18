@@ -19,7 +19,7 @@ Documentation
 Quick Usage Overview
 --------------------
 
-In order to add simple address fields (address, suburb, city, postcode and
+In order to add simple address fields (address, address2, suburb, city, state, postcode and
 country) to an object, simply apply to `Addressable` extension:
 
 ```yml
@@ -47,8 +47,8 @@ changed, simple apply the `Geocodable` extension:
 
 ```yml
 
-Page: 
-  extensions: 
+Page:
+  extensions:
     - Geocodable
 
 ```
@@ -60,7 +60,7 @@ this, you _must_ specify a Google app Server API key
 ```yml
 GoogleGeocoding:
   google_api_key: {your_google_server_api_key}
-  
+
 ```
 
 Allow different postcode regex (e.g. UK postcode with numbers and letters mixed) in config.yml

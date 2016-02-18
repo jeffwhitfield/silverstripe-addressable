@@ -78,6 +78,7 @@ class Addressable extends DataExtension {
 
 	private static $db = array(
 		'Address'  => 'Varchar(255)',
+		'Address2'  => 'Varchar(255)',
 		'Suburb'   => 'varchar(64)',
 		'State'    => 'Varchar(64)',
 		'Postcode' => 'Varchar(10)',
@@ -125,6 +126,7 @@ class Addressable extends DataExtension {
 
 		$fields = array(
 			new TextField('Address', _t('Addressable.ADDRESS', 'Address')),
+			new TextField('Address2', _t('Addressable.ADDRESS2', 'Address 2')),
 			new TextField('Suburb', _t('Addressable.SUBURB', 'Suburb'))
 		);
 
@@ -163,6 +165,7 @@ class Addressable extends DataExtension {
 	public function hasAddress() {
 		return (
 			$this->owner->Address
+			&& $this->owner->Address2
 			&& $this->owner->Suburb
 			&& $this->owner->State
 			&& $this->owner->Postcode
@@ -176,8 +179,9 @@ class Addressable extends DataExtension {
 	 * @return string
 	 */
 	public function getFullAddress() {
-		return sprintf('%s, %s, %s %s, %s',
+		return sprintf('%s %s, %s, %s %s',
 			$this->owner->Address,
+			$this->owner->Address2,
 			$this->owner->Suburb,
 			$this->owner->State,
 			$this->owner->Postcode,
@@ -225,7 +229,7 @@ class Addressable extends DataExtension {
 	 * @return bool
 	 */
 	public function isAddressChanged($level = 1) {
-		$fields  = array('Address', 'Suburb', 'State', 'Postcode', 'Country');
+		$fields  = array('Address', 'Address2', 'Suburb', 'State', 'Postcode', 'Country');
 		$changed = $this->owner->getChangedFields(false, $level);
 
 		foreach ($fields as $field) {
