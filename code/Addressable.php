@@ -179,7 +179,7 @@ class Addressable extends DataExtension {
 	 * @return string
 	 */
 	public function getFullAddress() {
-		return sprintf('%s %s, %s, %s %s',
+		return sprintf('%s %s, %s, %s, %s, %s',
 			$this->owner->Address,
 			$this->owner->Address2,
 			$this->owner->Suburb,
